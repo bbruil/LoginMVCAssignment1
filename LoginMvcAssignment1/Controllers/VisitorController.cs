@@ -17,17 +17,21 @@ namespace LoginMvcAssignment1.Controllers
 
             db.Visitors.Add(visitor);
             db.SaveChanges();
-            return View(db.Visitors);
+            return View("Index");
 
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
 
 
         [HttpGet]
         // GET: Customer
         public ActionResult Index()
         {
-            return View("Login",db.Visitors);
+            return View(db.Visitors);
         }
 
     }
