@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
  
-<h2>Welcome @Session["UserName"]. You have successfully logged on.</h2>
+<h2>Welcome @Session["UserName"]  @Session["UserId"]. You have successfully logged on.</h2>
+<h3>Other users with active sessions in this application
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Login")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -34,12 +35,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.IpAddress)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LoginId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LoginId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LoginId })
-        </td>
     </tr>
 }
-
 </table>
+    @{Html.BeginForm("Index", "Visitor", FormMethod.Post);
+
+        {
+
+         
+        <div class="col-md-10">
+            <input type="submit" value="logout" class="btn btn-default" />
+        </div>
+        }
+        Html.EndForm();
+    }
+

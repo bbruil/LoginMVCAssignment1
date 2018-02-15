@@ -14,11 +14,14 @@ namespace LoginMvcAssignment1.Controllers
         [HttpPost]
         public ActionResult Login(Visitor visitor)
         {
+            
             Session["UserName"] = visitor.UserName;
+    
             visitor.LoginTime = DateTime.Now;
             visitor.IpAddress = Request.UserHostAddress;
             db.Visitors.Add(visitor);
             db.SaveChanges();
+            Session["UserID"] = visitor.LoginId;
             return RedirectToAction("Index");
 
         }
@@ -30,10 +33,24 @@ namespace LoginMvcAssignment1.Controllers
         }
 
 
-                
+           [HttpGet]     
         public ActionResult Index()
         {
+            
             return View(db.Visitors);
+        }
+
+        [HttpPost]
+        public ActionResult Index(Visitor visitor)
+        {
+           int id = Convert.ToInt32(Session["UserId"]);
+           Visitor currentvisitor = db.Visitors.Single(v => v.LoginId == id);
+             
+              db.Visitors.Remove(currentvisitor);
+            db.SaveChanges();
+
+            return RedirectToAction("Login");
+
         }
 
     }
