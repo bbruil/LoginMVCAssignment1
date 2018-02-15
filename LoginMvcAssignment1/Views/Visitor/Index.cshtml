@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Welcome @Html.DisplayNameFor(model=>model.UserName). You have successfully logged on.)</h2>
+ 
+<h2>Welcome @Session["UserName"]. You have successfully logged on.</h2>
 
 <p>
     @Html.ActionLink("Create New", "Login")

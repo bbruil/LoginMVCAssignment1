@@ -13,7 +13,8 @@ namespace LoginMvcAssignment1.Controllers
 
         [HttpPost]
         public ActionResult Login(Visitor visitor)
-        {    
+        {
+            Session["UserName"] = visitor.UserName;
             visitor.LoginTime = DateTime.Now;
             visitor.IpAddress = Request.UserHostAddress;
             db.Visitors.Add(visitor);
