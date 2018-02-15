@@ -19,6 +19,7 @@ namespace LoginMvcAssignment1.Controllers
             Session["Message"] = String.Concat("Hello "+@Session["UserName"].ToString()+"You have successfully logged on.");
             visitor.LoginTime = DateTime.Now;
             visitor.IpAddress = Request.UserHostAddress;
+
             db.Visitors.Add(visitor);
             db.SaveChanges();
             Session["UserID"] = visitor.LoginId;
