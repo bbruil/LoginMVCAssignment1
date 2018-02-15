@@ -22,15 +22,14 @@ namespace LoginMvcAssignment1.Controllers
 
         }
 
-
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
 
-        [HttpGet]
-        // GET: Customer
+                
         public ActionResult Index()
         {
             return View(db.Visitors);
