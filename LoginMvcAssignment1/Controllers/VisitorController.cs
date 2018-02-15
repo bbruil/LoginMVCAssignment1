@@ -13,13 +13,15 @@ namespace LoginMvcAssignment1.Controllers
 
         [HttpPost]
         public ActionResult Login(Visitor visitor)
-        {
-
+        {    
+            visitor.LoginTime = DateTime.Now;
+            visitor.IpAddress = Request.UserHostAddress;
             db.Visitors.Add(visitor);
             db.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
 
         }
+
 
         public ActionResult Login()
         {
