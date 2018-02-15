@@ -16,7 +16,7 @@ namespace LoginMvcAssignment1.Controllers
         {
             
             Session["UserName"] = visitor.UserName;
-    
+            Session["Message"] = String.Concat("Hello "+@Session["UserName"].ToString()+"You have successfully logged on.");
             visitor.LoginTime = DateTime.Now;
             visitor.IpAddress = Request.UserHostAddress;
             db.Visitors.Add(visitor);
@@ -33,7 +33,7 @@ namespace LoginMvcAssignment1.Controllers
         }
 
 
-           [HttpGet]     
+          [HttpGet]     
         public ActionResult Index()
         {
             
@@ -43,13 +43,13 @@ namespace LoginMvcAssignment1.Controllers
         [HttpPost]
         public ActionResult Index(Visitor visitor)
         {
-           int id = Convert.ToInt32(Session["UserId"]);
-           Visitor currentvisitor = db.Visitors.Single(v => v.LoginId == id);
-             
-              db.Visitors.Remove(currentvisitor);
+            int id = Convert.ToInt32(Session["UserId"]);
+            Visitor currentvisitor = db.Visitors.Single(v => v.LoginId == id);
+            Session["Message"] = String.Concat("GoodBye"+" "+@Session["UserName"].ToString()+" "+ "You have successfully logged OUT. Please Log in Again");
+            db.Visitors.Remove(currentvisitor);
             db.SaveChanges();
 
-            return RedirectToAction("Login");
+            return View(db.Visitors);
 
         }
 

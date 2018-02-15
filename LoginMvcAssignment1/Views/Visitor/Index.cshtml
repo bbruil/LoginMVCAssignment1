@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
  
-<h2>Welcome @Session["UserName"]  @Session["UserId"]. You have successfully logged on.</h2>
-<h3>Other users with active sessions in this application
+<h2>@Session["Message"]</h2>
+<h3>Other users with active sessions in this application</h3>
 
 @*<p>
     @Html.ActionLink("Create New", "Login")
@@ -24,7 +24,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in  Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
